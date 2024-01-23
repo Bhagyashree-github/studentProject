@@ -1,0 +1,18 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: 'Montserrat', sans-serif;
+    font-family: 'Roboto', sans-serif;  }
+
+    input{
+        border: 1px solid #3589f14f !important ;
+     
+    }
+    input:hover, input:focus{
+        box-shadow: none !important ;
+        border: 1px solid hsla(217, 100%, 50%, 1) !important;
+    }
+    a:hover{
+        color: hsla(217, 100%, 50%, 1) !important;
+    }
+

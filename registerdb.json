@@ -1,0 +1,53 @@
+{
+  "users": [
+    {
+      "username": "bhagyashree",
+      "useremail": "bhagyashree@gmail.com",
+      "passw": "1234",
+      "cpassw": "1234",
+      "id": 1
+    },
+    {
+      "username": "john",
+      "useremail": "john@gmail.com",
+      "passw": "1223",
+      "cpassw": "1223",
+      "id": 2
+    },
+    {
+      "username": "user",
+      "useremail": "user@gmail.com",
+      "passw": "user@123",
+      "cpassw": "user@123",
+      "id": 3
+    },
+    {
+      "username": "abc",
+      "useremail": "abc@gmail.com",
+      "passw": "abc123",
+      "cpassw": "abc123",
+      "id": 4
+    },
+    {
+      "username": "xyz",
+      "useremail": "xyz@gmail.com",
+      "passw": "12345",
+      "cpassw": "1234",
+      "id": 5
+    },
+    {
+      "username": "p",
+      "useremail": "john@gmail.com",
+      "passw": "2",
+      "cpassw": "2",
+      "id": 6
+    },
+    {
+      "username": "o",
+      "useremail": "john@gmail.com",
+      "passw": "1",
+      "cpassw": "1",
+      "id": 7
+    }
+  ]
+}

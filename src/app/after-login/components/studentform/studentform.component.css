@@ -1,0 +1,122 @@
+.formmaindiv{
+    height: 70vh;
+}
+.studentform {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.row {
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+
+.form-select:focus,
+.form-select:active {
+    box-shadow: none;
+    border: 1px solid hsla(217, 100%, 50%, 1) !important;
+}
+
+.textval:focus,
+.textval:active {
+    box-shadow: none;
+    border: 1px solid hsla(217, 100%, 50%, 1) !important;
+}
+.textval{
+    height: 1rem;
+}
+input {
+    border: 1px solid lightgray;
+    border-radius: 5px;
+}
+
+input:focus,
+input:active {
+    box-shadow: none;
+    outline: none;
+    border: 1px solid hsla(217, 100%, 50%, 1) !important;
+}
+
+.card {
+    box-shadow: 1px 1px 15px 2px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    position: absolute;
+    top: 5rem;
+}
+
+.card-header {
+    background: linear-gradient(90deg, hsla(217, 100%, 50%, 1) 0%, hsla(186, 100%, 69%, 1) 100%);
+    color: white;
+}
+
+
+
+.actionbtn {
+    align-items: center;
+    justify-content: center;
+}
+
+#profilepic {
+    max-width: 50px;
+}
+
+.removebtn {
+    height: 80%;
+    width: 15%;
+    border-radius: 100%;
+    font-size: 2rem;
+}
+
+.profilediv {
+    cursor: pointer;
+}
+
+.card {
+    width: 50rem;
+}
+
+@media only screen and (max-width:350px) {
+    .card {
+        width: 100%;
+        padding-bottom: 4rem;
+    }
+
+    .row {
+        display: grid;
+        grid-template-columns: auto;
+    }
+
+
+}
+
+@media only screen and (min-width:351px) and (max-width:499px) {
+    .card {
+        width: 80%;
+        padding-bottom: 4rem;
+    }
+    .row {
+        display: grid;
+        grid-template-columns: auto;
+    }
+}
+@media only screen and (min-width: 500px) and (max-width:699px) {
+    .card {
+        width: 80%;
+        padding-bottom: 4rem;
+    }
+}
+@media only screen and (min-width: 700px) and (max-width:999px) {
+    .card {
+        width: 70%;
+        padding-bottom: 4rem;
+    }
+}
+
+@media only screen and (min-width: 1000px) {
+    .card {
+        width: 50%;
+        padding-bottom: 4rem;
+    }
+}

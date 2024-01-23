@@ -1,0 +1,72 @@
+<div class="container-fluid" style="position: absolute; top: 7rem">
+  <div class="card">
+    <div class="card-header text-center">Login</div>
+    <div class="card-body">
+      <form [formGroup]="LoginForm" (ngSubmit)="onLogin(LoginForm.value)">
+        <div class="row">
+          <div class="col-7">
+            <img class="loginimg" src="../../../../assets/login.png" />
+          </div>
+          <div class="col-5">
+          <div class="col">
+            <label for="email">email</label>
+            <input
+              type="email"
+              class="form-control"
+              placeholder="john@gmail.com"
+              formControlName="email"
+            />
+            <div
+              *ngIf="
+                !useremail?.valid && (useremail?.touched || useremail?.dirty)
+              "
+              style="color: red"
+            >
+              Email is required
+            </div>
+          </div>
+
+          <div class="col">
+            <label for="password">Password</label>
+            <input
+              [type]="iseyeclicked ? 'text' : 'password'"
+              class="form-control paswordinp"
+              formControlName="passw"
+            />
+            <div (click)="eyebtnclicked()">
+              <i class="bi bi-eye-fill eyebutton"></i>
+              <i
+                *ngIf="iseyeclicked"
+                class="bi bi-eye-slash-fill eyebutton"
+              ></i>
+            </div>
+
+            <a
+              style="color: rgb(45, 141, 252); cursor: pointer"
+              (click)="forgotpage()"
+              >Forgot password</a
+            >
+          </div>
+          <div class="col mt-4">
+            <button
+              class="btn btn-primary"
+              [disabled]="!LoginForm.valid"
+              style="width: 100%"
+            >
+              Login
+            </button>
+          </div>
+          <div class="col" style="margin-top: 2rem">
+            First time user?
+            <a
+              style="color: rgb(45, 141, 252); cursor: pointer"
+              (click)="registerPage()"
+              >Register Here</a
+            >
+          </div>
+        </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

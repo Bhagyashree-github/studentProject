@@ -1,0 +1,170 @@
+
+
+<!-- Modal --> 
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+         <h1 class="modal-title fs-5" id="staticBackdropLabel">Profile picture</h1>
+          <button type="button" class="btn-close"  data-bs-dismiss="modal"  aria-label="Close"></button>
+      </div>
+      <div class="modal-body d-flex justify-content-center">
+        <img [src]="profilepic"  alt="profilepic" style="width: 50%; height: 50%;"  />
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div> 
+
+<!-- Modal -->
+<div class="modal fade" id="showAlldataOfppl" data-bs-keyboard="false" data-bs-backdrop="static" tabindex="-1" aria-labelledby="showAlldataOfpplLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        EMPLOYEE DETAILS
+        <button  type="button"  class="btn-close" data-bs-dismiss="modal" aria-label="Close" ></button>
+      </div>
+      <div class="modal-body">
+        <div class="detialsdata">
+          <div *ngIf="newalldata">
+            <span class="headings"> ID :</span> {{ newalldata.id }}
+          </div>
+          <div *ngIf="newalldata">
+            <span class="headings"> NAME :</span> {{ newalldata.name }}
+          </div>
+          <div *ngIf="newalldata">
+            <span class="headings">EMAIL ID : </span> {{ newalldata.email }}
+          </div>
+          <div *ngIf="newalldata">
+            <span class="headings"> MOBILE NUMBER :</span>
+            {{ newalldata.mobile }}
+          </div>
+          <div *ngIf="newalldata">
+            <span class="headings"> GENDER : </span> {{ newalldata.gender }}
+          </div>
+          <div *ngIf="newalldata">
+            <span class="headings"> DATE OF BIRTH :</span>
+            {{ newalldata.dob | date : "dd/mm/yyyy" }}  
+          </div>
+          <div *ngIf="newalldata">
+            <span class="headings"> PACKAGE :</span> {{ newalldata.package }}
+          </div>
+          <div *ngIf="newalldata">
+            <span class="headings"> POSITION : </span>{{ newalldata.position }}
+          </div>
+          
+          <div *ngIf="newalldata">
+            <span class="headings"> EDUCATION : </span>
+
+            <div *ngFor="let e of newalldata.education; let idx = index">
+              <div>
+                <span class="headings">institute{{ idx + 1 }} - </span> {{ e }}
+              </div>
+            </div>
+          </div>
+
+          <div *ngIf="newalldata">
+            <span class="headings"> ADDRESS : </span> <span>{{newalldata.address}}</span>
+          </div>
+
+        </div>
+        <div *ngIf="newalldata">
+          <div>Employee document here : <span style="margin-left: 1rem;"><i class="bi bi-file-earmark-pdf-fill pdficon" (click)="openpdf(this)" style="font-size: 1.5rem; "></i> </span></div>
+        </div>
+       
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid  scollabletable" style="top: 4rem; position: absolute ; background-color: whitesmoke;">
+  <div class="inputdiv">
+    <label for="search" style="font-size: 1rem;"> Search by name: </label>
+  <input type="text"  class="form-control searchinput" (input)="searchName($event)">
+  </div>
+
+  <div style="margin-top: 2rem;">
+    <label for="showtabledatas">Show 
+      <select name="noofdatas" style="padding: 0.2rem;" (change)="selectEntries($event)" >
+        <option value="5" selected>5</option>
+        <option value="10" >10</option>
+        <option value="20" >20</option>
+      </select>
+      entries
+    </label>
+  </div>
+  <div class="table-responsive" style="width: 100%;">
+  <table class="table table-bordered align-middle table-sm table-hover mt-3" style="width: max-content">
+    <thead>
+      <tr>
+        <th scope="col" style="width:80px ;">Serial No.</th>
+        <!-- <th scope="col" style="width: 70px;" (click)="sortItems($event)">Id <i  class="bi bi-arrow-down-up arrow" ></i></th> -->
+        <th scope="col" style="width: 200px;">Name <i class="bi bi-arrow-up arrow" (click)="sortAscending('name')"></i> <i class="bi bi-arrow-down arrow" (click)="sortDescending('name')"></i></th>
+        <th scope="col" style="width: 200px;">Email Id <i class="bi bi-arrow-up arrow" (click)="sortAscending('email')"></i> <i class="bi bi-arrow-down arrow" (click)="sortDescending('name')"></i></th>
+        <th scope="col" style="width: 120px;">Mobile No <i class="bi bi-arrow-up arrow" (click)="sortAscending('mobile')"></i> <i class="bi bi-arrow-down arrow" (click)="sortDescending('name')"></i></th>
+        <th scope="col" style="width: 80px;">Gender</th>
+        <th scope="col" style="width: 110px;">Date of birth</th>
+        <th scope="col" style="width: 160px;" >Package(in LPA) <i class="bi bi-arrow-up arrow" (click)="sortAscending('package')"></i> <i class="bi bi-arrow-down arrow" (click)="sortDescending('name')"></i></th>
+        <th scope="col" style="width: 150px;">Position</th>
+        <th scope="col" style="width: 300px;">Education</th>
+        <th scope="col" style="width: 120px;">Address</th>
+        <th scope="col" style="width: 70px;">Profile</th>
+        <th scope="col" >Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of (alldata | search :searchText )| paginate:config ; let i = index ">
+        
+        <td scope="row">{{ i + 1 }}</td>
+        <!-- <td>{{ data.id }}</td> -->
+        <td>{{ data.name }}</td>
+        <td>{{ data.email }}</td>
+        <td>{{ data.mobile }}</td>
+        <td>{{ data.gender }}</td>
+       
+        <td>{{ data.dob  | date : "dd/MM/yyyy" }}</td>
+        <td>{{ data.package }}</td>
+        <td>{{ data.position }}</td>
+        <td>{{ data.education }}</td>
+        <td>{{ data.address }}</td>
+        <td>
+          <div  class="profilediv d-flex justify-content-center" (click)="showProfile(data.profile)" data-bs-toggle="modal"  data-bs-target="#staticBackdrop">
+            <img [src]="data.profile" alt="yourpic" id="profilepic" style="height: 2.5rem; width: 2rem;border-radius: 100%;cursor: pointer;"/>
+          </div>
+        </td>
+
+        <td class="d-flex">
+          <a >
+            <!-- [routerLink]="['/home', data.id]"  -->
+            <button class="btn btn-sm btn-outline-primary mx-1 my-1" (click)="updateData(data.id, data)">
+              <i class="bi bi-pen-fill"></i>
+            </button>
+          </a>
+          <button class="btn  btn-sm btn-outline-danger mx-1 my-1" (click)="deleteData(data.id)" >
+            <i class="bi bi-trash-fill"></i>
+          </button>
+
+          <button class="btn  btn-sm btn-outline-success mx-1 my-1" (click)="showAllppl(data)" data-bs-toggle="modal" data-bs-target="#showAlldataOfppl">
+            <i class="bi bi-eye-fill"></i>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+
+  </table>
+</div>
+  <div class="paginationclass">
+    <pagination-controls id="basicPaginate" previousLabel="Prev" nextLabel="Next" (pageChange)="pageChanged($event)"></pagination-controls>
+
+  </div>
+</div>
+

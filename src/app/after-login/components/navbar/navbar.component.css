@@ -1,0 +1,96 @@
+body{
+    position:relative;
+}
+.navbar{
+    position: absolute;
+    top:0;
+    width: 100%;
+}
+
+.footer{
+     position: fixed; 
+    width: 100%;
+    color: white;
+    padding: 0.5rem;
+    bottom: 0;
+    z-index: 2;
+}
+.navicon{
+    cursor: pointer;
+}
+.menui{
+    font-size: 1.5rem;
+    display: none;
+}
+.menui:hover{
+    cursor: pointer;
+}
+.navitem{
+    text-decoration: none;
+    color: white;
+    font-size: 1rem;
+    padding: 0.5rem 2rem;
+    transition: 0.5s;
+}
+.navitem:hover{
+    color: white;
+    background-color: white;
+}.closemenu{
+    color: black;
+}
+.hidd{
+    display: none;
+}
+
+@media only screen and (max-width:450px) {
+    .hidden{
+        display: none !important;
+    }
+    .navlinks{
+        /* display: none; */
+       display: grid;
+       position: absolute;
+       left: 0;
+       grid-template-columns: auto;
+       background-color: white;
+      border-radius: 10px;
+       z-index: 3;
+    }
+    .hidd{
+        display: block;
+    }
+    .closemenu {
+        color: black;
+        float: right;
+    padding: 3px 8px;
+    }
+    .navitem{
+        color: black;
+        padding: 0.5rem 4rem;
+    }
+    .navitem:hover{
+        color: white !important;
+        background-color: #3c82f3;
+    }
+    .menui{
+        display: block;
+    }
+    /* #overlay{
+        background-color: rgba(0,0,0,0.3);
+        height: 100%;
+        width: 100%;
+       z-index: 2;
+    } */
+    .overlay{
+        background-color: rgba(0,0,0,0.3);
+       
+    }
+}
+
+
+
+
+
+
+
+

@@ -1,0 +1,342 @@
+
+<div class="container-fluid d-flex justify-content-center formmaindiv" >
+  <div class="card mt-4">
+    <div class="card-header text-center h2">Employee Form</div>
+    <div class="card-body">
+      <div class="mb-3">
+        <form  id="stdform"  [formGroup]="studentForm" (ngSubmit)="onSubmit()">
+         
+          <div class="row">
+            <div class="col form-label">
+              <label for="name">Name</label>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="John Doe"
+                formControlName="name"
+              />
+              
+              <div *ngIf=" !name?.valid && (name?.dirty ||name?.touched)" style="color: red;">
+                Name is not valid
+              </div>
+            </div>
+              
+
+            <div class="col form-label">
+              <label for="email">Email</label>
+              <input
+                type="email"
+                class="form-control"
+                placeholder="john@gmail.com"
+                formControlName="email"
+              />
+              <div *ngIf="! emailid?.valid && (emailid?.dirty ||emailid?.touched)" style="color: red;">
+                Email is not valid
+              </div>
+      
+            </div>
+            <!-- </div> -->
+
+            <!-- <div class="row "> -->
+            <div class="col form-label">
+              <label for="mobile">Mobile</label>
+              <label for="email">Mobile No.</label>
+              <input
+                type="number"
+                class="form-control"
+                placeholder="+91xxxxxxxxxx"
+                formControlName="mobile"
+              />
+              <div *ngIf="!mobilenumber?.valid && (mobilenumber?.dirty ||mobilenumber?.touched)" style="color: red;">
+              <div [hidden]="!mobilenumber?.errors?.['required'] ">
+                Mobile number is required
+              </div>
+
+             <!-- <div *ngIf="mobilenumber?.hasError('maxLength')">
+              Mobile number can't contain more than 10 digits
+             </div> -->
+             
+              <!-- <div [hidden]="!mobilenumber?.errors?.['pattern']">
+              Mobile Number is not valid
+              </div> -->
+            </div>
+             
+
+                <!-- <div  [hidden]="!mobilenumber?.errors?.required">
+      Mobile Number is required
+    </div>
+    <div [hidden]="!mobilenumber?.errors?.minLength">
+      Mobile Number is of 10 digits
+    </div> -->
+             
+            </div>
+
+            <div class="col form-label">
+              <div class="form-group">
+                <label>Gender</label>
+
+                <div>
+                  <label class="md-check m-1">
+                    <input
+                      type="radio"
+                      value="male"
+                      name="gender"
+                      formControlName="gender"
+                    />
+                    Male
+                  </label>
+                  <label class="md-check m-1">
+                    <input
+                      type="radio"
+                      value="female"
+                      name="gender"
+                      formControlName="gender"
+                    />
+                    Female
+                  </label>
+                  <label class="md-check m-1">
+                    <input
+                      type="radio"
+                      value="other"
+                      name="gender"
+                      formControlName="gender"
+                    />
+                    Other
+                  </label>
+                </div>
+              
+              </div>
+            </div>
+
+            <!-- </div> -->
+            <!-- <div class="row "> -->
+
+            <div class="col form-label">
+              <label for="dob">Date of birth</label>
+              <input
+                type="date"
+                class="form-control"
+                formControlName="dob"
+                (change)="calculateAge($event)"
+              />
+              <div *ngIf="! dateofbirth?.valid && (dateofbirth?.dirty ||dateofbirth?.touched)" style="color: red;">
+                Date of birth is required
+              </div>
+            </div>
+
+            <div
+              class="col form-label"
+             
+              [ngStyle]="{ display: ageofst > 0 ? 'inline-block' : 'none' }"
+            >
+              <label for="age">age</label>
+              <input
+                type="text"
+                id="agefield"
+                readonly
+                class="form-control"
+                [value]="ageofst"
+              />
+            </div>
+
+            <!-- </div> -->
+            <!-- <div class="row "> -->
+
+            <div class="col">
+              <label for="package">Package</label>
+              <input
+                type="number"
+                class="form-control"
+                formControlName="package"
+                placeholder="12"
+              />
+              <div *ngIf="! package?.valid && (package?.dirty ||package?.touched)" style="color: red;">
+                Package is required
+              </div>
+            </div>
+
+            <div class="col">
+              <label for="position">Position</label>
+              <select
+                class="form-select"
+                aria-label="select position"
+                formControlName="position"
+              >
+                <option value="">Select</option>
+                <option value="Software Engineer">Software Engineer</option>
+                <option value="Designer">UI/UX Designer</option>
+                <option value="Devops">Devops Engineer</option>
+                <option value="Tester">Software Tester</option>
+                <option value="project manager">Project Manager</option>
+                <option value="Tech Lead">Tech Lead</option>
+                <option value="Director">Director</option>
+                <option value="Backend Developer">Backend Developer</option>
+              </select>
+
+              <div *ngIf="! position?.valid && (position?.dirty ||position?.touched)" style="color: red;">
+                position is required
+              </div>
+            </div>
+
+            <div class="col">
+              <label for="profile">Upload Profile</label>
+              <div class="input-group">
+                <input
+                  type="file"
+                  id="uploadimg"
+                  class="form-control"
+                  accept="image/*"
+                  (change)="uploadimage($event)"
+                  aria-label="Upload Profile"
+                />
+              </div>
+              <!-- <div>{{ profilename }}</div> -->
+            </div>
+
+            <div class="col">
+              <label for="document">Upload Document</label>
+              <div class="input-group">
+                <input
+                  type="file"
+                  id="uploaddoc"
+                  class="form-control"
+                  accept="application/pdf"
+                  (change)="uploaddoc($event)"
+                  aria-label="Upload Document"
+                />
+              </div>
+            </div>
+
+            <div class="col">
+              <label for="stdaddress">Address</label>
+              <!-- <div class="form-floating form-label" > -->
+              <textarea
+                class="form-control textval"
+                id="addressval"
+                formControlName="address"
+                placeholder="address here"
+              ></textarea>
+              <!-- (change)="takeAddressval()" -->
+              <!-- </div> -->
+              <div *ngIf="! addressdetails?.valid && (addressdetails?.dirty ||addressdetails?.touched)" style="color: red;">
+                Address is required
+              </div>
+            </div>
+          </div>
+
+          <!-- <div class="row addressdiv" formGroupName="address"> -->
+
+          <!-- <div class="col d-flex flex-column">
+              <div
+                class="form-label d-flex flex-column form-group"
+                *ngFor="let addrs of addressControl.controls; let i = index"
+              >
+                <div class="d-flex align-items-center">
+                  <input
+                    type="text"
+                    [ngStyle]="{ 'margin-right': '0.5rem' }"
+                    class="form-control"
+                    [formControlName]="i"
+                  />
+                  <button
+                    type="button"
+                    class="btn btn-primary btn-sm text-center"
+                    (click)="removeAddressAt(i)"
+                  >
+                    remove
+                  </button>
+                </div>
+              </div>
+            </div> -->
+
+          <!-- </div> -->
+
+          <!-- </div> -->
+          <div class="row addressdiv" formGroupName="education">
+            <div class="col d-flex flex-column">
+              <label for="education">Education</label>
+              <div class="d-flex">
+                <input
+                  class="form-control"
+                  id="educationval"
+                  type="text"
+                  placeholder="education details"
+                  (change)="takeEducationval()"
+                />
+                <div *ngIf="! educationdetails?.valid && (educationdetails?.dirty ||educationdetails?.touched)" style="color: red;">
+                  Education is required
+                </div>
+                <!-- <div class=" form-label" [ngStyle]="{'width':'100%'}">
+                <label for="educationval">Education</label>
+               
+              
+              </div> -->
+                <div style="margin-left: 1rem">
+                  <input
+                    class="btn btn-primary"
+                    type="button"
+                    (click)="addEducation()"
+                    value="+"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div class="col d-flex flex-column" style="margin-top: 1.1rem">
+              <div
+                class="form-label d-flex flex-column form-group"
+                *ngFor="let edc of educationControl.controls; let i = index"
+              >
+                <div class="d-flex align-items-center">
+                  <input
+                    type="text"
+                    class="form-control"
+                    [ngStyle]="{ 'margin-right': '0.5rem' }"
+                    [formControlName]="i"
+                  />
+                  <button
+                    type="button"
+                    class="btn btn-primary btn-sm text-center"
+                    (click)="removeEducationAt(i)"
+                  >
+                    remove
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- <div class="row "> -->
+          <div
+            class="form-check mt-2 d-flex justify-content-center align-items-center form-label"
+          >
+            <input
+              class="form-check-input mr-2"
+              type="checkbox"
+              formControlName="checkval"
+            />
+            <label
+              class="form-check-label"
+              for="confirmation"
+              style="margin-left: 5px"
+            >
+              All the information are true
+            </label>
+          </div>
+          <!-- </div> -->
+          <div class="text-center mt-3">
+            <button
+              type=" submit"
+              class="btn btn-primary"
+              [disabled]="!studentForm.valid"
+             
+            >
+              <!-- (click)="addData()" -->
+              {{ newdata ? "Update" : "Submit" }}
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
